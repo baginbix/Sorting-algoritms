@@ -3,7 +3,7 @@
 #include <time.h>
 #include "sorting_algorithms.h"
 
-#define LENGTH 10
+#define LENGTH 10000000
 int cint = 0;
 
 extern void bubbleSort(int *list, const int length);
@@ -22,6 +22,13 @@ int main()
 	e,&screen,100*100,coord,&bytesWritten);
 	return 0;*/
 
+    time_t rawtime;
+    struct tm *timeinfo;
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+    printf("Current local time and date: %s", asctime(timeinfo));
+
     clock_t start, end;
     int *list = (int *)malloc(sizeof(int) * LENGTH);
     for (int i = 0; i < LENGTH; i++)
@@ -33,23 +40,17 @@ int main()
     start = clock();
     int *qList = (int *)malloc(sizeof(list) * LENGTH);
     memcpy(qList, list, sizeof(int) * LENGTH);
-    quickSort(qList, 0, LENGTH-1);
+    //quickSort(qList, 0, LENGTH - 1);
     end = clock() - start;
     printf("Sorted: %d numbers\n", LENGTH);
     printf("Time: %f", (double)(end) / CLOCKS_PER_SEC);
-        for (int i = 0; i < LENGTH; i++)
-    {
-        printf("%d", qList[i];
-    }
     free(qList);
-
-    
 
     printf("\nMergeSort\n");
     start = clock();
     int *mList = (int *)malloc(sizeof(list) * LENGTH);
     memcpy(mList, list, sizeof(int) * LENGTH);
-    mergeSort(mList, 0, LENGTH-1);
+    mergeSort(mList, 0, LENGTH - 1);
     end = clock() - start;
     printf("Sorted: %d numbers\n", LENGTH);
     printf("Time: %f", (double)(end) / CLOCKS_PER_SEC);
